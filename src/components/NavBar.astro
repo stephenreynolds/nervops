@@ -1,11 +1,47 @@
 <nav class="nav-shell">
   <div class="container nav-inner">
     <a href="#top" class="nav-logo">NERVOPS</a>
-    <div class="nav-links">
-      <a href="#overview">OVERVIEW</a>
-      <a href="#agents">NEURAL CORES</a>
-      <a href="#projects">DEPLOYMENTS</a>
-      <a href="#command">COMMAND</a>
+    <div class="nav-controls">
+      <div class="nav-links">
+        <a href="#overview">OVERVIEW</a>
+        <a href="#agents">NEURAL CORES</a>
+        <a href="#projects">DEPLOYMENTS</a>
+        <a href="#command">COMMAND</a>
+      </div>
+      <button
+        type="button"
+        class="bg-mode-toggle"
+        data-bg-toggle
+        aria-label="Cycle background mode"
+      >
+        BG: 1
+      </button>
     </div>
   </div>
 </nav>
+
+<script>
+  const STORAGE_KEY = 'nervops:bgMode';
+  const toggle = document.querySelector('[data-bg-toggle]');
+
+  if (toggle instanceof HTMLButtonElement) {
+    const getMode = () => {
+      const raw = document.documentElement.dataset.bg;
+      return raw === '2' || raw === '3' ? raw : '1';
+    };
+
+    const setLabel = (mode) => {
+      toggle.textContent = `BG: ${mode}`;
+      toggle.setAttribute('aria-label', `Cycle background mode. Current mode ${mode}`);
+    };
+
+    setLabel(getMode());
+
+    toggle.addEventListener('click', () => {
+      const nextMode = getMode() === '1' ? '2' : getMode() === '2' ? '3' : '1';
+      document.documentElement.dataset.bg = nextMode;
+      localStorage.setItem(STORAGE_KEY, nextMode);
+      setLabel(nextMode);
+    });
+  }
+</script>
