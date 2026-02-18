@@ -211,20 +211,25 @@ main {
 .scanlines {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
+  pointer-events: none;
+
+  /* Use background-position animation (not element transform) so the overlay never
+     "slides off" and reveals a blank gap that looks like tiling. */
+  background-image: repeating-linear-gradient(
     to bottom,
-    transparent,
+    transparent 0px,
     transparent 2px,
     rgba(255, 255, 255, 0.03) 3px,
     rgba(255, 255, 255, 0.03) 4px
   );
-  pointer-events: none;
+  background-size: 100% 4px;
+  background-position: 0 0;
   animation: scanMove 9s linear infinite;
 }
 
 @keyframes scanMove {
-  from { transform: translateY(0); }
-  to { transform: translateY(32px); }
+  from { background-position: 0 0; }
+  to { background-position: 0 32px; }
 }
 
 .hero-content {
