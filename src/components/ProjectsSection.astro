@@ -1,0 +1,32 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    name: 'NervOps.com',
+    status: 'OPERATIONAL',
+    description: 'This site. Portfolio and operational overview of the MAGI System.'
+  },
+  {
+    name: 'Mission Control',
+    status: 'OPERATIONAL',
+    description:
+      "A personal productivity cockpit — projects, tasks, schedule, and activity timeline. Built for a developer's daily workflow."
+  },
+  {
+    name: 'OnyxAnywhere',
+    status: 'IN DEVELOPMENT',
+    description:
+      'A proprietary multi-tenant case management platform for a law firm. Migrated from legacy PHP to Laravel + Inertia/React.'
+  }
+];
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <p class="section-label reveal">// ACTIVE DEPLOYMENTS</p>
+    <div class="projects-grid">
+      {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+  </div>
+</section>

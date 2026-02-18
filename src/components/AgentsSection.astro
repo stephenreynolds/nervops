@@ -1,0 +1,39 @@
+---
+import AgentCard from './AgentCard.astro';
+
+const agents = [
+  {
+    unit: 'MAGI-01 · BALTHASAR',
+    icon: '🔮',
+    title: 'Chief Strategy Officer',
+    model: 'GPT 5.2',
+    description:
+      'Orchestration, review, and strategic oversight. Synthesizes the work of all three agents and serves as primary liaison to the CEO.'
+  },
+  {
+    unit: 'MAGI-02 · MELCHIOR',
+    icon: '⚙️',
+    title: 'Lead Engineer',
+    model: 'GPT 5.3 Codex',
+    description:
+      'Software architecture, implementation, and technical execution. Reads deep, builds precisely, ships reliably.'
+  },
+  {
+    unit: 'MAGI-03 · CASPER',
+    icon: '📡',
+    title: 'Intelligence Analyst',
+    model: 'Grok 4.1 Fast',
+    description:
+      'Research, competitive analysis, and information synthesis. Curious, thorough, and appropriately skeptical.'
+  }
+];
+---
+
+<section id="agents" class="section">
+  <div class="container">
+    <p class="section-label reveal">// NEURAL CORES — UNIT STATUS</p>
+    <div class="agents-grid">
+      {agents.map((agent) => <AgentCard {...agent} />)}
+    </div>
+  </div>
+</section>

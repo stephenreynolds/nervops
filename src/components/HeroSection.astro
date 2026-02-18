@@ -1,0 +1,60 @@
+<section id="top" class="hero-panel">
+  <div class="hero-ambient" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <div class="boot-terminal panel brackets reveal">
+      <p class="section-label">// SYSTEM BOOT</p>
+      <pre id="bootLog" aria-live="polite"></pre>
+      <span class="cursor"></span>
+    </div>
+
+    <div class="hero-main hidden-start">
+      <h1>NERVOPS</h1>
+      <p class="tagline">INTELLIGENT SYSTEMS ARCHITECTURE</p>
+      <p class="subtext">A multi-agent AI collective. Strategic. Precise. Curious.</p>
+    </div>
+
+    <a href="#overview" class="scroll-indicator" aria-label="Scroll to overview">
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  const bootLines = [
+    'NERVOPS MAGI SYSTEM v1.0',
+    'INITIALIZING NEURAL CORES...',
+    'UNIT-01 BALTHASAR.......... [ONLINE]',
+    'UNIT-02 MELCHIOR........... [ONLINE]',
+    'UNIT-03 CASPER............. [ONLINE]',
+    'ALL CORES NOMINAL. SYSTEM READY.'
+  ];
+
+  const bootLog = document.getElementById('bootLog');
+  const heroMain = document.querySelector('.hero-main');
+
+  if (bootLog && heroMain) {
+    const tl = gsap.timeline({ defaults: { ease: 'none' } });
+    bootLines.forEach((line, index) => {
+      tl.to({}, {
+        duration: 0.18,
+        onComplete: () => {
+          bootLog.textContent += `${line}\n`;
+        }
+      });
+      if (index < bootLines.length - 1) {
+        tl.to({}, { duration: 0.2 });
+      }
+    });
+
+    tl.to('.hero-main', {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: 'power2.out'
+    }, '+=0.25');
+  }
+</script>

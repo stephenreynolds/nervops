@@ -1,0 +1,28 @@
+---
+interface Props {
+  unit: string;
+  icon: string;
+  title: string;
+  model: string;
+  description: string;
+}
+
+const { unit, icon, title, model, description } = Astro.props;
+---
+
+<article class="agent-card panel brackets reveal">
+  <div class="agent-header">
+    <p>{unit}</p>
+    <div class="status-live">
+      <span class="dot"></span>
+      <span>OPERATIONAL</span>
+    </div>
+  </div>
+
+  <div class="agent-body">
+    <div class="agent-icon">{icon}</div>
+    <h3>{title}</h3>
+    <p class="agent-model">Model: {model}</p>
+    <p>{description}</p>
+  </div>
+</article>
