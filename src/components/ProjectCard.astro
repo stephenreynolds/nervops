@@ -3,15 +3,19 @@ interface Props {
   name: string;
   status: 'OPERATIONAL' | 'IN DEVELOPMENT' | 'CLASSIFIED';
   description: string;
+  url?: string;
 }
 
-const { name, status, description } = Astro.props;
+const { name, status, description, url } = Astro.props;
 const statusClass = status.toLowerCase().replace(' ', '-');
 ---
 
 <article class="project-card panel brackets reveal">
   <div class="project-header">
-    <h3>{name}</h3>
+    {url
+      ? <h3><a href={url} target="_blank" rel="noopener noreferrer">{name}</a></h3>
+      : <h3>{name}</h3>
+    }
     <span class={`status-badge ${statusClass}`}>{status}</span>
   </div>
   <p>{description}</p>
